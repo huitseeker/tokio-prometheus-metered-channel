@@ -1,0 +1,12 @@
+sign-commit = true
+sign-tag = true
+pre-release-commit-message = "chore: Release version {{version}}"
+post-release-commit-message = "chore: Development version {{version}}"
+tag-message = "Release version {{version}}"
+push = true
+publish = true
+
+pre-release-replacements = [
+  {file="README.md", search="tokio-prometheus-channel-backpressure = .*", replace="tokio-prometheus-channel-backpressure = \"{{version}}\""},
+  {file="CHANGELOG.md", search="Unreleased", replace="{{version}}"},
+]
