@@ -12,7 +12,7 @@ use tracing::{debug, error, instrument};
 /// # Examples
 ///
 /// ```rust
-/// use tokio_prometheus_channel_backpressure::{watch_channel, ChannelMetrics};
+/// use tokio_prometheus_metered_channel::{watch_channel, ChannelMetrics};
 /// use prometheus::Registry;
 ///
 /// #[tokio::main]
@@ -121,5 +121,10 @@ impl<T: Clone> Receiver<T> {
     /// Returns true if the sender has been dropped
     pub fn has_changed(&self) -> bool {
         self.inner.has_changed().unwrap_or(false)
+    }
+
+    /// Get the total messages counter if enabled
+    pub fn total_messages(&self) -> Option<&prometheus::IntCounter> {
+        self.total_messages.as_ref()
     }
 }

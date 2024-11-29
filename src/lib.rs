@@ -21,7 +21,7 @@
 //! # Example
 //!
 //! ```rust
-//! use tokio_prometheus_channel_backpressure::{mpsc_channel, ChannelMetrics};
+//! use tokio_prometheus_metered_channel::{mpsc_channel, ChannelMetrics};
 //! use prometheus::Registry;
 //!
 //! #[tokio::main]
@@ -50,11 +50,6 @@
 
 #![warn(missing_docs)]
 
-/// Broadcast channel implementation with prometheus metrics integration.
-///
-/// This channel type allows sending messages to multiple receivers.
-/// Each receiver gets a copy of each message sent after they subscribed.
-pub mod broadcast;
 
 mod channel;
 mod error;
@@ -65,6 +60,13 @@ mod metrics;
 /// This channel type allows watching for value changes.
 /// New receivers see the latest value and all subsequent changes.
 pub mod watch;
+
+
+/// Broadcast channel implementation with prometheus metrics integration.
+///
+/// This channel type allows sending messages to multiple receivers.
+/// Each receiver gets a copy of each message sent after they subscribed.
+pub mod broadcast;
 
 #[cfg(test)]
 mod tests;

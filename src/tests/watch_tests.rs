@@ -16,7 +16,7 @@ async fn test_watch_channel() {
     let registry = Registry::new();
     let metrics = ChannelMetrics::new_basic("test_watch", "test watch channel", &registry).unwrap();
     
-    let (tx, mut rx1) = watch_channel::channel(0, metrics);
+    let (tx, mut rx1) = watch_channel(0, metrics);
     let mut rx2 = rx1.clone();
     
     // Update value
@@ -35,12 +35,12 @@ async fn test_watch_metrics() {
     let registry = Registry::new();
     let metrics = ChannelMetrics::new("test_watch_metrics", "test watch metrics", &registry).unwrap();
     
-    let (tx, mut rx) = watch_channel::channel(0, metrics);
+    let (tx, rx) = watch_channel(0, metrics);
     
     tx.send(1).unwrap();
     tx.send(2).unwrap();
     
-    rx.changed().await.unwrap();
-    rx.changed().await.unwrap();
-    assert_eq!(rx.total_messages.as_ref().unwrap().get(), 2);
+    // Directly assert the latest value
+    assert_eq!(*rx.borrow(), 2);
+    assert_eq!(rx.total_messages().unwrap().get(), 2);
 }

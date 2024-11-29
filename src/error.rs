@@ -14,7 +14,7 @@ use tokio::sync::mpsc::error::{SendError as TokioSendError, TrySendError};
 /// # Examples
 ///
 /// ```rust
-/// use tokio_prometheus_channel_backpressure::{mpsc_channel, ChannelMetrics, SendError};
+/// use tokio_prometheus_metered_channel::{mpsc_channel, ChannelMetrics, SendError};
 /// use prometheus::Registry;
 ///
 /// #[tokio::main]

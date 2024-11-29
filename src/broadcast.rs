@@ -12,7 +12,7 @@ use tracing::{debug, error, instrument};
 /// # Examples
 ///
 /// ```rust
-/// use tokio_prometheus_channel_backpressure::{broadcast_channel, ChannelMetrics};
+/// use tokio_prometheus_metered_channel::{broadcast_channel, ChannelMetrics};
 /// use prometheus::Registry;
 ///
 /// #[tokio::main]
@@ -129,5 +129,10 @@ impl<T: Clone> Receiver<T> {
             }
             Err(e) => Err(e),
         }
+    }
+
+    /// Get the total messages counter if enabled
+    pub fn total_messages(&self) -> Option<&prometheus::IntCounter> {
+        self.total_messages.as_ref()
     }
 }

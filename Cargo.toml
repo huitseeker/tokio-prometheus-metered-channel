@@ -1,15 +1,15 @@
 [package]
-name = "tokio-prometheus-channel-backpressure"
+name = "tokio-prometheus-metered-channel"
 version = "0.1.0"
 edition = "2021"
 description = "Metered tokio channels with Prometheus metrics integration"
 authors = ["Francois Garillot <francois@garillot.net>"]
 license = "Apache-2.0"
-repository = "https://github.com/yourusername/tokio-prometheus-channel-backpressure"
-documentation = "https://docs.rs/tokio-prometheus-channel-backpressure"
+repository = "https://github.com/huitseeker/tokio-prometheus-metered-channel"
+documentation = "https://docs.rs/tokio-prometheus-metered-channel"
 readme = "README.md"
 keywords = ["tokio", "prometheus", "metrics", "channel", "async"]
-categories = ["asynchronous", "development-tools::monitoring", "concurrency"]
+categories = ["asynchronous", "development-tools", "concurrency"]
 rust-version = "1.65.0"
 
 [dependencies]
@@ -21,3 +21,8 @@ pin-project = "1.1"
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 tracing-futures = "0.2"
+
+[package.metadata.release]
+sign-tag = true
+push-remote = "origin"
+allow-branch = ["main"]

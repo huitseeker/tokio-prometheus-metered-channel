@@ -1,3 +1,10 @@
+# Tokio Prometheus metered channel
+
+Add the following to your `Cargo.toml`:
+```
+tokio-prometheus-metered=channel = "0.1.0"
+```
+
 # Metered Bounded Channel
 
 The metered bounded channel is a specialized threading utility designed to handle communication between threads with an upper limit on capacity while tracking the channel's occupancy through Prometheus metrics.
