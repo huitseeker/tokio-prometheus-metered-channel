@@ -2,7 +2,7 @@
 
 Add the following to your `Cargo.toml`:
 ```
-tokio-prometheus-metered=channel = "0.1.0"
+tokio-prometheus-metered-channel = "0.1.0"
 ```
 
 # Metered Bounded Channel
