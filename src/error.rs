@@ -1,5 +1,5 @@
 //! Error types for channel operations.
-//! 
+//!
 //! This module provides error types used throughout the crate for handling
 //! various channel operation failures.
 
@@ -7,7 +7,7 @@ use std::fmt::Debug;
 use tokio::sync::mpsc::error::{SendError as TokioSendError, TrySendError};
 
 /// Error type for channel operations.
-/// 
+///
 /// This type represents errors that can occur when sending messages through
 /// any of the channel types provided by this crate.
 ///
@@ -66,7 +66,9 @@ where
 {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            SendError::Closed(value) => write!(f, "send error: channel closed with value {:?}", value),
+            SendError::Closed(value) => {
+                write!(f, "send error: channel closed with value {:?}", value)
+            }
             SendError::Full(value) => write!(f, "send error: channel full with value {:?}", value),
         }
     }

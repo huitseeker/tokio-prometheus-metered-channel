@@ -1,11 +1,11 @@
 use crate::error::SendError;
 use crate::metrics::ChannelMetrics;
-use tokio::sync::watch;
 use std::sync::Arc;
+use tokio::sync::watch;
 use tracing::{debug, error, instrument};
 
 /// A sender for the watch channel.
-/// 
+///
 /// The watch channel allows watching for value changes and supports
 /// multiple receivers that can independently track value updates.
 ///
@@ -51,10 +51,7 @@ pub struct Receiver<T> {
 }
 
 /// Creates a new watch channel with an initial value and metrics
-pub fn channel<T>(
-    initial: T,
-    metrics: ChannelMetrics,
-) -> (Sender<T>, Receiver<T>) {
+pub fn channel<T>(initial: T, metrics: ChannelMetrics) -> (Sender<T>, Receiver<T>) {
     let (tx, rx) = watch::channel(initial);
     let gauge = metrics.queue_size;
     let total_messages = metrics.total_messages;
@@ -90,7 +87,7 @@ impl<T> Sender<T> {
             Err(e) => {
                 error!("failed to update watch value");
                 Err(SendError::Closed(e.0))
-            },
+            }
         }
     }
 
