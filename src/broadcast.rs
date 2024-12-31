@@ -1,7 +1,7 @@
 use crate::error::SendError;
 use crate::metrics::ChannelMetrics;
-use tokio::sync::broadcast;
 use std::sync::Arc;
+use tokio::sync::broadcast;
 use tracing::{debug, error, instrument};
 
 /// A broadcast channel sender that integrates with Prometheus metrics.
@@ -47,10 +47,7 @@ pub struct Receiver<T: Clone> {
 }
 
 /// Creates a new broadcast channel with given capacity and metrics
-pub fn channel<T: Clone>(
-    capacity: usize,
-    metrics: ChannelMetrics,
-) -> (Sender<T>, Receiver<T>) {
+pub fn channel<T: Clone>(capacity: usize, metrics: ChannelMetrics) -> (Sender<T>, Receiver<T>) {
     let (tx, rx) = broadcast::channel(capacity);
     let gauge = metrics.queue_size;
     let total_messages = metrics.total_messages;
@@ -86,7 +83,7 @@ impl<T: Clone> Sender<T> {
             Err(e) => {
                 error!("failed to broadcast value");
                 Err(SendError::Closed(e.0))
-            },
+            }
         }
     }
 

@@ -2,11 +2,11 @@ use crate::error::SendError;
 use crate::metrics::ChannelMetrics;
 use async_trait::async_trait;
 use futures::Sink;
+use std::future::Future;
 use std::pin::Pin;
 use std::task::{Context, Poll};
 use tokio::sync::mpsc;
-use std::future::Future;
-use tracing::{debug, error, instrument, Instrument, span, Level};
+use tracing::{debug, error, instrument, span, Instrument, Level};
 
 /// A sender handle to a channel
 #[derive(Debug, Clone)]
@@ -68,7 +68,7 @@ pub fn channel_with_total<T>(
     total: &prometheus::IntCounter,
 ) -> (Sender<T>, Receiver<T>) {
     let (tx, rx) = mpsc::channel(buffer);
-    
+
     (
         Sender {
             inner: tx,
@@ -114,7 +114,7 @@ impl<T> Sender<T> {
             Err(err) => {
                 error!(?err, "failed to send value");
                 Err(err.into())
-            },
+            }
         }
     }
 
@@ -196,13 +196,13 @@ impl<T: Send> WithPermit<T> for Sender<T> {
         debug!("requesting permit");
         let permit = self.reserve().await?;
         debug!("permit acquired");
-        
+
         // Then execute the future - this ensures we don't lose the future's result
         // if the permit acquisition is cancelled
         let output = future
             .instrument(span!(Level::DEBUG, "permit_future"))
             .await;
-        
+
         debug!("future completed with permit");
         Ok((permit, output))
     }

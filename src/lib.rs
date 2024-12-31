@@ -50,7 +50,6 @@
 
 #![warn(missing_docs)]
 
-
 mod channel;
 mod error;
 mod metrics;
@@ -60,7 +59,6 @@ mod metrics;
 /// This channel type allows watching for value changes.
 /// New receivers see the latest value and all subsequent changes.
 pub mod watch;
-
 
 /// Broadcast channel implementation with prometheus metrics integration.
 ///
