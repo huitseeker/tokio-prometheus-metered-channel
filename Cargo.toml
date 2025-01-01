@@ -15,7 +15,7 @@ rust-version = "1.65.0"
 [dependencies]
 futures = { version = "0.3.31", features = ["std"] }
 prometheus = { version = "0.13.4", features = ["process"] }
-tokio = { version = "1.36.0", features = ["full", "rt", "rt-multi-thread", "sync", "time", "macros"] }
+tokio = { version = "1.38.1", features = ["full", "rt", "rt-multi-thread", "sync", "time", "macros"] }
 async-trait = "0.1"
 pin-project = "1.1"
 tracing = "0.1"
