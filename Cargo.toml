@@ -1,6 +1,6 @@
 [package]
 name = "tokio-prometheus-metered-channel"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 description = "Metered tokio channels with Prometheus metrics integration"
 authors = ["Francois Garillot <francois@garillot.net>"]
