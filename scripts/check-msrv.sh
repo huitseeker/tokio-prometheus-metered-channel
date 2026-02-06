@@ -2,7 +2,13 @@
 set -e
 set -o pipefail
 
-# MSRV checking script for single-crate repository
+# MSRV checking script for single-crate repository.
+#
+# Note: This script is designed for single-crate repos. If this repository
+# becomes a workspace with multiple members, update to use:
+#   cargo msrv verify --workspace
+# or iterate members and pass --manifest-path per crate (see miden-base's
+# check-msrv.sh for a workspace-aware implementation).
 
 # ---- utilities --------------------------------------------------------------
 
