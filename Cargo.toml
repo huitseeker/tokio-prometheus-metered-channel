@@ -10,7 +10,7 @@ documentation = "https://docs.rs/tokio-prometheus-metered-channel"
 readme = "README.md"
 keywords = ["tokio", "prometheus", "metrics", "channel", "async"]
 categories = ["asynchronous", "development-tools", "concurrency"]
-rust-version = "1.65.0"
+rust-version = "1.78.0"
 
 [dependencies]
 futures = { version = "0.3.31", features = ["std"] }
