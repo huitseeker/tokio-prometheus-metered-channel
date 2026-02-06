@@ -34,6 +34,7 @@ jobs:
         run: cargo fmt --all -- --check
       - name: Clippy check
         run: cargo clippy --all-features -- -D warnings
+
   docs:
     name: Documentation
     runs-on: ubuntu-latest
